@@ -9,6 +9,7 @@ body {
     text-rendering: optimizeLegibility;
     outline: none;
     word-break: break-all;
+    font-size: 2vh;
 }
 .body {
     height: 100vh;
