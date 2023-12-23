@@ -2,7 +2,7 @@
     <div>
         <input type="text" v-model="searchQuery" @input="filterList" :placeholder="props.placeholder" @focus="e => {selected = true; (e.target as HTMLInputElement).select()}" @blur="selected = false">
         <ul v-if="selected || hovering">
-            <li v-for="item, i in filteredList" :key="item" @click="select(item)" @mouseover="hovering = true" @mouseleave="hovering = false">
+            <li v-for="item, i in filteredList" :key="item" @click="select(item)" @mouseover="hovering = true" @mouseleave="hovering = false" :style="{width: width != undefined ? `${width}vw` : `inherit`}">
                 <div v-if="displayText != undefined">
                     <p v-if="i == arrowedItem" class="arrowed">
                         {{ displayText(item) }}
@@ -32,7 +32,8 @@ let props = defineProps<{
     items: string[],
     value?: string,
     displayText?: (item: string, index?: number) => string,
-    filter?: (item: string) => boolean
+    filter?: (item: string) => boolean,
+    width?: number
 }>()
 
 let emit = defineEmits({
@@ -107,9 +108,8 @@ ul {
     padding-top: 2vh;
     padding-bottom: 2vh;
     position: fixed;
-    width: 27vw;
+    width: 23.75vw;
     list-style-type: none;
-    border-radius: 0.5em;
     max-height: 40vh;
     overflow-y: scroll;
 }
