@@ -313,9 +313,9 @@ select {
     width: 34.75vw;
 }
 textarea {
-    width: 47vw;
-    min-width: 47vw;
-    max-width: 47vw;
+    width: 46.5vw;
+    min-width: 46.5vw;
+    max-width: 46.5vw;
     height: 17vh;
     min-height: 17vh;
     max-height: 17vh;

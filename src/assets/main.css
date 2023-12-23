@@ -58,7 +58,7 @@ textarea {
     border: none;
     background-color: #181818;
     /* border-radius: 0.5em; */
-    padding: 0.5em;
+    padding: 1vh 1vw 1vh 1vw;
     color: white;
     width: 40vw;
     font-size: 2vh;
