@@ -32,7 +32,10 @@
                     <input type="checkbox" :checked="atis.emergencies">
                     <p>Allow Emergencies</p>
                 </div>
-                <div class="hflex boxed half hidden"></div>
+                <div class="hflex boxed half" @click="atis.sids = !atis.sids">
+                    <input type="checkbox" :checked="atis.sids">
+                    <p>Prefer SIDs/STARs</p>
+                </div>
                 <div class="hflex boxed half hidden"></div>  
             </div>
             <div class="hflex">
@@ -185,6 +188,7 @@
                 </p>
                 <p v-if="atis.speedLimit">Speed {{ atis.speed }}kts or below.</p>
                 <p>VFR Acft say Direction of Flight, Intentions in Flight Plan.</p>
+                <p v-if="atis.sids">SIDs/STARs are preferred.</p>
                 <p>{{ atis.emergencies ? "Emergencies Allowed." : "No Emergencies." }}</p>
                 <p v-for="i in atis.extraNotams.split('\n')">{{ i }}</p>
                 <br>
