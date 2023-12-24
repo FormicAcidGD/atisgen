@@ -2,7 +2,7 @@
     <div class="body">
         <div class="vflex options">
             <div class="hflex">
-                <SearchField :value="atis.airport" placeholder="Airport" :items="airports" :display-text="i => getAirport(i).friendlyName" @change="v => {atis.airport = v; atis.towerCallsign = getAirport(v).towerCallsigns[0]; atis.towerFrequency = getAirport(v).defaultTowerFrequency; atis.groundFrequency = getAirport(v).defaultGroundFrequency}"></SearchField>
+                <SearchField :value="atis.airport" placeholder="Airport" :items="airports" :display-text="i => getAirport(i).friendlyName" @change="v => {atis.airport = v; atis.towerCallsign = getAirport(v).towerCallsigns[0]; atis.towerFrequency = getAirport(v).defaultTowerFrequency; atis.groundFrequency = getAirport(v).defaultGroundFrequency; atis.chartAuthor = getAirport(v).chartPacks[0].author; atis.chartLink = getAirport(v).chartPacks[0].link}"></SearchField>
                 <SearchField :value="atis.information" placeholder="Information" :items="phonetics" :display-text="i => `${i} (${getPhonetic(i)})`" @change="v => atis.information = v"></SearchField>
             </div>
             <div class="hflex">
@@ -125,19 +125,27 @@
                     <p>Heading</p>
                 </div>
             </div>
-            <div class="hflex">
-                <div class="hflex half boxed">
-                    <p>Chart Pack Author</p>
-
+            <div class="vflex boxed long">
+                <div class = "hflex long">
+                    <p>Charts</p>
                 </div>
-                <input type="text" v-model="atis.chartAuthor" class="fancy">
             </div>
             <div class="hflex">
-                <div class="hflex half boxed">
+                <select @change="handleCharts">
+                    <option v-for="i in getAirport(atis.airport).chartPacks" :value="JSON.stringify(i)">{{ i.author }}</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <div class="hflex half boxed" v-if="atis.customCharts">
+                    <p>Chart Pack Author</p>
+                </div>
+                <input type="text" v-model="atis.chartAuthor" class="third" v-if="atis.customCharts">
+            </div>
+            <div class="hflex">
+                <div class="hflex half boxed" v-if="atis.customCharts">
                     <p>Chart Pack Link</p>
 
                 </div>
-                <input type="text" v-model="atis.chartLink" class="fancy">
+                <input type="text" v-model="atis.chartLink" class="fancy" v-if="atis.customCharts">
             </div>
             <div class="vflex boxed long">
                 <div class = "hflex long">
@@ -213,9 +221,24 @@
 import { reactive, ref, type Ref } from 'vue';
 import SearchField from './components/SearchField.vue';
 import { airports, getPhonetic, phonetics } from './StaticData';
-import { getAirport } from './types/Airport';
+import { getAirport, type ChartPack } from './types/Airport';
 
 let atisRef: Ref<HTMLDivElement | null> = ref(null)
+
+function handleCharts(e: Event) {
+    let value = (e.currentTarget as HTMLSelectElement).value;
+    if (value == "custom") {
+        atis.customCharts = true
+        atis.chartAuthor = ""
+        atis.chartLink = ""
+    } else {
+        atis.customCharts = false
+        let chartPack: ChartPack = JSON.parse(value)
+        atis.chartAuthor = chartPack.author
+        atis.chartLink = chartPack.link
+    }
+    
+}
 
 function copy() {
     // @ts-ignore
@@ -275,7 +298,8 @@ let atis = reactive({
     speed: 250,
     speedLimit: true,
     extraNotams: "",
-    sids: true
+    sids: true,
+    customCharts: false
 })
 </script>
 
@@ -301,10 +325,6 @@ input[type=range] {
 }
 p {
     margin: 0;
-}
-.section {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
 }
 .options {
     width: 48.5vw;
@@ -362,9 +382,9 @@ textarea {
     width: 46.5vw;
     min-width: 46.5vw;
     max-width: 46.5vw;
-    height: 17vh;
-    min-height: 17vh;
-    max-height: 17vh;
+    height: 11.5vh;
+    min-height: 11.5vh;
+    max-height: 11.5vh;
     margin-top: 1vh;
 }
 
