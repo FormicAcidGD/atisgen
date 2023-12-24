@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="hflex">
-                <input type="number" v-model="atis.depRunways" placeholder="Departure Runways">
-                <input type="number" v-model="atis.arrRunways" placeholder="Arrival Runways">
+                <input type="text" v-model="atis.depRunways" placeholder="Departure Runways">
+                <input type="text" v-model="atis.arrRunways" placeholder="Arrival Runways">
             </div>
             <div class="hflex">
                 <div class="hflex smallgap">
