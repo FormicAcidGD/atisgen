@@ -6,7 +6,8 @@ interface Airport {
     towerCallsigns: string[],
     hasGround: boolean,
     defaultTowerFrequency: string,
-    defaultGroundFrequency: string
+    defaultGroundFrequency: string,
+    maxAcft: string
 }
 
 function getDefaultAirport(): Airport {
@@ -27,7 +28,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.800",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "N/A"
         },
         {
             code: "IJAF",
@@ -41,7 +43,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "119.1",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "CRJ7/Q400"
         },
         {
             code: "IBAR",
@@ -55,7 +58,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.080",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "SF50/DHC6"
         },
         {
             code: "IBLT",
@@ -69,7 +73,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.430",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "SF50/DHC6"
         },
         {
             code: "IRFD",
@@ -86,7 +91,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: true,
             defaultTowerFrequency: "124.850",
-            defaultGroundFrequency: "120.400"
+            defaultGroundFrequency: "120.400",
+            maxAcft: "N/A"
         },
         {
             code: "IGRV",
@@ -103,7 +109,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "126.750",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "B787/A350/MD11"
         },
         {
             code: "IHEN",
@@ -117,7 +124,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.200",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "SF50/DHC6"
         },
         {
             code: "IZOL",
@@ -134,7 +142,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: true,
             defaultTowerFrequency: "124.640",
-            defaultGroundFrequency: "121.900"
+            defaultGroundFrequency: "121.900",
+            maxAcft: "N/A"
         },
         {
             code: "ILAR",
@@ -151,7 +160,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: true,
             defaultTowerFrequency: "126.300",
-            defaultGroundFrequency: "119.400"
+            defaultGroundFrequency: "119.400",
+            maxAcft: "N/A"
         },
         {
             code: "ILKL",
@@ -165,7 +175,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "120.150",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "LJ45/DHC6"
         },
         {
             code: "IMLR",
@@ -179,7 +190,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "133.850",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "B787/A350/MD11"
         },
         {
             code: "IPAP",
@@ -193,7 +205,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "119.900",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "B787/A350/MD11"
         },
         {
             code: "IPPH",
@@ -209,7 +222,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: true,
             defaultTowerFrequency: "135.250",
-            defaultGroundFrequency: "121.700"
+            defaultGroundFrequency: "121.700",
+            maxAcft: "N/A"
         },
         {
             code: "ISCM",
@@ -223,7 +237,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.220",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "N/A"
         },
         {
             code: "IDCS",
@@ -237,7 +252,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "122.500",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "SF50/DHC6"
         },
         {
             code: "IBTH",
@@ -254,7 +270,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "128.600",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "CRJ7/Q400"
         },
         {
             code: "ISAU",
@@ -271,7 +288,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "127.820",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "A320/B737/MD90"
         },
         {
             code: "ISKP",
@@ -287,7 +305,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.400",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "SF50/DHC6"
         },
         {
             code: "ITKO",
@@ -303,7 +322,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: true,
             defaultTowerFrequency: "132.300",
-            defaultGroundFrequency: "118.225"
+            defaultGroundFrequency: "118.225",
+            maxAcft: "N/A"
         },
         {
             code: "ITRC",
@@ -317,7 +337,8 @@ function generateAirports(): Airport[] {
             ],
             hasGround: false,
             defaultTowerFrequency: "118.500",
-            defaultGroundFrequency: ""
+            defaultGroundFrequency: "",
+            maxAcft: "C172"
         }
     ]
 }

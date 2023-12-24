@@ -170,6 +170,7 @@
                 <p>Max Taxi Speed: {{ atis.taxiSpeed }}kts</p>
                 <p>Arrival Runway(s): {{ atis.arrRunways }}</p>
                 <p>Departure Runway(s): {{ atis.depRunways }}</p>
+                <p>Max Acft Size: {{ getAirport(atis.airport).maxAcft }}</p>
                 <p>QNH: {{ atis.qnh }}</p>
                 <br>
                 <p>NOTAMS:</p>
