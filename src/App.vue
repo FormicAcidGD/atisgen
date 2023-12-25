@@ -159,60 +159,32 @@
         </div>
         <div class="vflex">
             <div class="hflex">
-                <!-- <button class="third" @click="copy">Copy</button> -->
-                <button class="fancy" @click="exportATIS">Export</button>
-                <button class="fancy" @click="importATIS">Import</button>
+                <button class="third" @click="copy">Copy</button>
+                <button class="third" @click="exportATIS">Export</button>
+                <button class="third" @click="importATIS">Import</button>
             </div>
-            <div class="atis" ref="atisRef">
-                <span>
-                     {{ atis.boxes ? "∎" : "" }}
-                     {{ atis.airport }}
-                     ATIS
-                     Information
-                     {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }}
-                     {{ atis.zuluTime ? new Date().getUTCHours().toFixed(0).padStart(2, "0") + new Date().getUTCMinutes().toFixed(0).padStart(2, "0") + "z"  : "" }}
-                     {{ atis.boxes ? "∎" : "" }}
-                </span><br>
-                <span>{{ "".padStart(atis.dashes, "―") }}</span><br>
-                <span>Controller Callsign: {{ atis.towerCallsign }} ({{ atis.towerFrequency }})</span><br>
-                <span v-if="atis.hasGround && getAirport(atis.airport).hasGround">Controller Callsign: {{ getAirport(atis.airport).groundCallsign }} ({{ atis.groundFrequency }})</span>
-                <span>{{ "".padStart(atis.dashes, "―") }}</span><br>
-                <span>Aerodrome:</span><br>
-                <span>Max Taxi Speed: {{ atis.taxiSpeed }}kts</span><br>
-                <span>Arrival Runway(s): {{ atis.arrRunways }}</span><br>
-                <span>Departure Runway(s): {{ atis.depRunways }}</span><br>
-                <span>Max Acft Size: {{ getAirport(atis.airport).maxAcft }}</span><br>
-                <span>QNH: {{ atis.qnh }}</span><br>
-                <br>
-                <span>NOTAMS:</span><br>
-                <span v-if="atis.topDown">Top Down for {{ atis.topDownText }}</span><br>
-                <span>
-                    Grounded Acft Advise Receipt of Information {{ atis.information }}{{ atis.groundedStand ? ", Stand Number" : "" }}{{ atis.groundedType ? ", Aircraft Type" : "" }}
-                    on Initial Contact.
-                </span><br>
-                <span>
-                    Airborne Acft Advise Receipt of Information {{ atis.information }}{{ atis.airborneType ? ", Aircraft Type" : "" }}{{ atis.airborneAlt ? ", Altitude" : "" }}{{ atis.airborneSpeed ? ", Airspeed" : "" }}{{ atis.airborneHeading ? ", Heading" : "" }}
-                    on Initial Contact.
-                </span><br>
-                <span v-if="atis.speedLimit">Speed {{ atis.speed }}kts or below.</span><br>
-                <span>VFR Acft say Direction of Flight, Intentions in Flight Plan.</span><br>
-                <span v-if="atis.sids">SIDs/STARs are preferred.</span><br>
-                <span>{{ atis.emergencies ? "Emergencies Allowed." : "No Emergencies." }}</span><br>
-                <span v-for="i in atis.extraNotams.split('\n')">{{ i }}</span><br>
-                <br>
-                <span>Charts:</span><br>
-                <span>Chart Pack Author: {{ atis.chartAuthor }}</span><br>
-                <span>Chart Pack Link: {{ atis.chartLink }}</span><br>
-                <span>{{ "".padStart(atis.dashes, "―") }}</span><br>
-                <span>
-                     {{ atis.boxes ? "∎" : "" }}
-                     End of
-                     ATIS
-                     Information
-                     {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }}
-                     {{ atis.boxes ? "∎" : "" }}
-                </span><br>
-            </div>
+            <textarea class="atis" ref="atisRef" readonly>{{ atis.boxes ? "∎" : "" }} {{ atis.airport }} ATIS Information {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }} {{ atis.zuluTime ? new Date().getUTCHours().toFixed(0).padStart(2, "0") + new Date().getUTCMinutes().toFixed(0).padStart(2, "0") + "z"  : "" }} {{ atis.boxes ? "∎" : "" }}
+{{ "".padStart(atis.dashes, "―") }}
+Controller Callsign: {{ atis.towerCallsign }} ({{ atis.towerFrequency }})
+{{ atis.hasGround && getAirport(atis.airport).hasGround ? `Controller Callsign: ${getAirport(atis.airport).groundCallsign } (${ atis.groundFrequency })&NewLine;` : "" }}{{ "".padStart(atis.dashes, "―") }}
+Aerodrome:
+Max Taxi Speed: {{ atis.taxiSpeed }}kts
+Arrival Runway(s): {{ atis.arrRunways }}
+Departure Runway(s): {{ atis.depRunways }}
+Max Acft Size: {{ getAirport(atis.airport).maxAcft }}
+QNH: {{ atis.qnh }}
+
+NOTAMS:
+{{ atis.topDown ? `Top Down for ${ atis.topDownText }&NewLine;` : "" }}{{ `Grounded Acft Advise Receipt of Information ${ atis.information }${ atis.groundedStand ? ", Stand Number" : "" }${ atis.groundedType ? ", Aircraft Type" : "" } on Initial Contact.`}}
+{{ `Airborne Acft Advise Receipt of Information ${ atis.information }${ atis.airborneType ? ", Aircraft Type" : "" }${ atis.airborneAlt ? ", Altitude" : "" }${ atis.airborneSpeed ? ", Airspeed" : "" }${ atis.airborneHeading ? ", Heading" : "" } on Initial Contact.`}}
+{{ atis.speedLimit ? `Speed ${ atis.speed }kts or below.&NewLine;` : ""}}VFR Acft say Direction of Flight, Intentions in Flight Plan.
+{{ atis.sids ? `SIDs/STARs are preferred.&NewLine;` : ""}}{{ atis.emergencies ? "Emergencies Allowed." : "No Emergencies." }}
+{{ atis.extraNotams }}                
+Charts:
+Chart Pack Author: {{ atis.chartAuthor }}
+Chart Pack Link: {{ atis.chartLink }}
+{{ "".padStart(atis.dashes, "―") }}
+{{ atis.boxes ? "∎" : "" }} End of ATIS Information {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }} {{ atis.boxes ? "∎" : "" }}</textarea>
         </div>
     </div>
 </template>
@@ -242,12 +214,12 @@ function handleCharts(e: Event) {
 
 function copy() {
     // @ts-ignore
-    let nodes = Array.from(atisRef.value?.children)
-    let text = ""
-    nodes.forEach(e => {
-        text += e.textContent + "\n"
-    })
-    navigator.clipboard.writeText(text)
+    // let nodes = Array.from(atisRef.value?.children)
+    // let text = ""
+    // nodes.forEach(e => {
+    //     text += e.textContent + "\n"
+    // })
+    navigator.clipboard.writeText((atisRef.value as HTMLTextAreaElement).value)
     alert("Copied to clipboard")
 }
 function exportATIS() {
@@ -284,8 +256,8 @@ let atis = reactive({
     depRunways: "",
     arrRunways: "",
     qnh: 1013,
-    chartAuthor: "",
-    chartLink: "",
+    chartAuthor: getAirport("IGAR").chartPacks[0].author,
+    chartLink: getAirport("IGAR").chartPacks[0].link,
     emergencies: false,
     topDown: false,
     topDownText: "",
@@ -386,6 +358,15 @@ textarea {
     min-height: 11.5vh;
     max-height: 11.5vh;
     margin-top: 1vh;
+}
+textarea.atis {
+    width: 46.5vw;
+    min-width: 46.5vw;
+    max-width: 46.5vw;
+    height: 88.5vh;
+    min-height: 88.5vh;
+    max-height: 88.5vh;
+    font-size: 1.8vh;
 }
 
 </style>
