@@ -61,10 +61,12 @@
                     <input type="number" v-model="atis.taxiSpeed" class="shortened" placeholder="Max Taxi Speed">
                 </div>
                 <div class="hflex smallgap">
-                    <div class="boxed medium hflex">
-                        <p>QNH</p>
-                    </div>
-                    <input type="number" v-model="atis.qnh" class="shortened" placeholder="QNH">
+                        <!-- <p>QNH</p> -->
+                        <select @change="handlePressure">
+                            <option value="hpa">QNH (hPa)</option>
+                            <option value="inhg">Altimeter (inHg)</option>
+                        </select>
+                    <input type="number" v-model="atis.pressure" class="shortened" placeholder="QNH">
                 </div>
             </div>
             <div class="hflex">
@@ -172,7 +174,7 @@ Max Taxi Speed: {{ atis.taxiSpeed }}kts
 Arrival Runway(s): {{ atis.arrRunways }}
 Departure Runway(s): {{ atis.depRunways }}
 Max Acft Size: {{ getAirport(atis.airport).maxAcft }}
-QNH: {{ atis.qnh }}
+{{ atis.useQNH ? `QNH: ${ Math.round(atis.pressure) }` : `Altimeter: ${atis.pressure.toFixed(2)}` }}
 
 NOTAMS:
 {{ atis.topDown ? `Top Down for ${ atis.topDownText }&NewLine;` : "" }}{{ `Grounded Acft Advise Receipt of Information ${ atis.information }${ atis.groundedStand ? ", Stand Number" : "" }${ atis.groundedType ? ", Aircraft Type" : "" } on Initial Contact.`}}
@@ -212,13 +214,18 @@ function handleCharts(e: Event) {
     
 }
 
+function handlePressure(e: Event) {
+    if ((e.currentTarget as HTMLSelectElement).value == "hpa" && !atis.useQNH) {
+        atis.pressure = Math.round(atis.pressure * 33.863889532610884 * 100) / 100
+        atis.useQNH = true
+    } else if (atis.useQNH) {
+        atis.pressure = Math.round(atis.pressure * 0.02952998057228486 * 100) / 100
+        atis.useQNH = false
+    }
+}
+
 function copy() {
     // @ts-ignore
-    // let nodes = Array.from(atisRef.value?.children)
-    // let text = ""
-    // nodes.forEach(e => {
-    //     text += e.textContent + "\n"
-    // })
     navigator.clipboard.writeText((atisRef.value as HTMLTextAreaElement).value)
     alert("Copied to clipboard")
 }
@@ -255,7 +262,7 @@ let atis = reactive({
     taxiSpeed: 25,
     depRunways: "",
     arrRunways: "",
-    qnh: 1013,
+    pressure: 1013.25,
     chartAuthor: getAirport("IGAR").chartPacks[0].author,
     chartLink: getAirport("IGAR").chartPacks[0].link,
     emergencies: false,
@@ -271,7 +278,8 @@ let atis = reactive({
     speedLimit: true,
     extraNotams: "",
     sids: true,
-    customCharts: false
+    customCharts: false,
+    useQNH: true
 })
 </script>
 
