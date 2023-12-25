@@ -41,7 +41,7 @@
             <div class="hflex">
                 <div class="hflex smallgap">
                     <select @change="v => atis.towerCallsign = (v.currentTarget as HTMLInputElement).value">
-                                <option :value="i" v-for="i in getAirport(atis.airport).towerCallsigns">{{ i }}</option>
+                        <option :value="i" v-for="i in getAirport(atis.airport).towerCallsigns" :selected="atis.towerCallsign == i">{{ i }}</option>
                     </select>
                     <input type="text" placeholder="Tower Frequency" v-model="atis.towerFrequency" class="shortened">
                 </div>
@@ -63,8 +63,8 @@
                 <div class="hflex smallgap">
                         <!-- <p>QNH</p> -->
                         <select @change="handlePressure">
-                            <option value="hpa">QNH (hPa)</option>
-                            <option value="inhg">Altimeter (inHg)</option>
+                            <option value="hpa" :selected="atis.useQNH">QNH (hPa)</option>
+                            <option value="inhg" :selected="!atis.useQNH">Altimeter (inHg)</option>
                         </select>
                     <input type="number" v-model="atis.pressure" class="shortened" placeholder="QNH">
                 </div>
@@ -134,8 +134,8 @@
             </div>
             <div class="hflex">
                 <select @change="handleCharts">
-                    <option v-for="i in getAirport(atis.airport).chartPacks" :value="JSON.stringify(i)">{{ i.author }}</option>
-                    <option value="custom">Custom</option>
+                    <option v-for="i in getAirport(atis.airport).chartPacks" :value="JSON.stringify(i)" :selected="atis.chartAuthor == i.author">{{ i.author }}</option>
+                    <option value="custom" :selected="atis.chartAuthor == 'custom'">Custom</option>
                 </select>
                 <div class="hflex half boxed" v-if="atis.customCharts">
                     <p>Chart Pack Author</p>
@@ -145,7 +145,6 @@
             <div class="hflex">
                 <div class="hflex half boxed" v-if="atis.customCharts">
                     <p>Chart Pack Link</p>
-
                 </div>
                 <input type="text" v-model="atis.chartLink" class="fancy" v-if="atis.customCharts">
             </div>
