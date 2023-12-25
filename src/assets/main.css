@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "gg sans";
+    src: url("@/assets/gg sans Regular.ttf") format("truetype");
+  }
 body {
     margin: 0;
     background-color: #202020;

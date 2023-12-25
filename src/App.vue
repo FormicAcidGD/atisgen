@@ -367,6 +367,7 @@ textarea.atis {
     min-height: 88.5vh;
     max-height: 88.5vh;
     font-size: 1.8vh;
+    font-family: "gg sans";
 }
 
 </style>
