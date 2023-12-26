@@ -120,7 +120,7 @@
                 </div>
                 <div class="hflex boxed half" @click="atis.airborneSpeed = !atis.airborneSpeed">
                     <input type="checkbox" :checked="atis.airborneSpeed">
-                    <p>Airpeed</p>
+                    <p>Airspeed</p>
                 </div>
                 <div class="hflex boxed half" @click="atis.airborneHeading = !atis.airborneHeading">
                     <input type="checkbox" :checked="atis.airborneHeading">
