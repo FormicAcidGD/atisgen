@@ -176,7 +176,7 @@ Max Acft Size: {{ getAirport(atis.airport).maxAcft }}
 {{ atis.useQNH ? `QNH: ${ Math.round(atis.pressure) }` : `Altimeter: ${atis.pressure.toFixed(2)}` }}
 
 NOTAMS:
-{{ atis.topDown ? `Top Down for ${ atis.topDownText }&NewLine;` : "" }}{{ `Grounded Acft Advise Receipt of Information ${ atis.information }${ atis.groundedStand ? ", Stand Number" : "" }${ atis.groundedType ? ", Aircraft Type" : "" } on Initial Contact.`}}
+{{ atis.topDown ? `Top Down for ${ atis.topDownText }&NewLine;` : "" }}{{ `Ground Acft Advise Receipt of Information ${ atis.information }${ atis.groundedStand ? ", Stand Number" : "" }${ atis.groundedType ? ", Aircraft Type" : "" } on Initial Contact.`}}
 {{ `Airborne Acft Advise Receipt of Information ${ atis.information }${ atis.airborneType ? ", Aircraft Type" : "" }${ atis.airborneAlt ? ", Altitude" : "" }${ atis.airborneSpeed ? ", Airspeed" : "" }${ atis.airborneHeading ? ", Heading" : "" } on Initial Contact.`}}
 {{ atis.speedLimit ? `Speed ${ atis.speed }kts or below.&NewLine;` : ""}}VFR Acft say Direction of Flight, Intentions in Flight Plan.
 {{ atis.sids ? `SIDs/STARs are preferred.&NewLine;` : ""}}{{ atis.emergencies ? "Emergencies Allowed." : "No Emergencies." }}
@@ -264,7 +264,7 @@ let atis = reactive({
     pressure: 1013.25,
     chartAuthor: getAirport("IGAR").chartPacks[0].author,
     chartLink: getAirport("IGAR").chartPacks[0].link,
-    emergencies: false,
+    emergencies: true,
     topDown: false,
     topDownText: "",
     groundedType: true,
