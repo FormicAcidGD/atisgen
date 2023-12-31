@@ -91,7 +91,7 @@
             </div>
             <div class="vflex boxed long">
                 <div class = "hflex long">
-                    <p>Grounded state on Initial Contact</p>
+                    <p>Ground state on Initial Contact</p>
                 </div>
             </div>
             <div class="hflex smallgap">
