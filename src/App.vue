@@ -36,7 +36,10 @@
                     <input type="checkbox" :checked="atis.sids">
                     <p>Prefer SIDs/STARs</p>
                 </div>
-                <div class="hflex boxed half hidden"></div>  
+                <div class="hflex boxed half" @click="atis.markdown = !atis.markdown">
+                    <input type="checkbox" :checked="atis.markdown">
+                    <p>Markdown</p>
+                </div>  
             </div>
             <div class="hflex">
                 <div class="hflex smallgap">
@@ -165,26 +168,26 @@
                 <button class="third" @click="importATIS">Import</button>
             </div>
             <textarea class="atis" ref="atisRef" readonly>{{ atis.boxes ? "∎" : "" }} {{ atis.airport }} ATIS Information {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }} {{ atis.zuluTime ? new Date().getUTCHours().toFixed(0).padStart(2, "0") + new Date().getUTCMinutes().toFixed(0).padStart(2, "0") + "z"  : "" }} {{ atis.boxes ? "∎" : "" }}
-{{ "".padStart(atis.dashes, "―") }}
-Controller Callsign: {{ atis.towerCallsign }} ({{ atis.towerFrequency }})
-{{ atis.hasGround && getAirport(atis.airport).hasGround ? `Controller Callsign: ${getAirport(atis.airport).groundCallsign } (${ atis.groundFrequency })&NewLine;` : "" }}{{ "".padStart(atis.dashes, "―") }}
-Aerodrome:
+{{ atis.markdown ? "**":"" }}{{ "".padStart(atis.dashes, "―") }}{{ atis.markdown ? "**":"" }}
+{{ atis.markdown ? "**":"" }}Controller Callsign:{{ atis.markdown ? "**":"" }} {{ atis.towerCallsign }} ({{ atis.towerFrequency }})
+{{ atis.hasGround && getAirport(atis.airport).hasGround ? `Controller Callsign: ${getAirport(atis.airport).groundCallsign } (${ atis.groundFrequency })&NewLine;` : "" }}{{ atis.markdown ? "**":"" }}{{ "".padStart(atis.dashes, "―") }}{{ atis.markdown ? "**":"" }}
+{{ atis.markdown ? "**":"" }}Aerodrome:{{ atis.markdown ? "**":"" }}
 Max Taxi Speed: {{ atis.taxiSpeed }}kts
 Arrival Runway(s): {{ atis.arrRunways }}
 Departure Runway(s): {{ atis.depRunways }}
 Max Acft Size: {{ getAirport(atis.airport).maxAcft }}
 {{ atis.useQNH ? `QNH: ${ Math.round(atis.pressure) }` : `Altimeter: ${atis.pressure.toFixed(2)}` }}
 
-NOTAMS:
+{{ atis.markdown ? "**":"" }}NOTAMS:{{ atis.markdown ? "**":"" }}
 {{ atis.topDown ? `Top Down for ${ atis.topDownText }&NewLine;` : "" }}{{ `Ground Acft Advise Receipt of Information ${ atis.information }${ atis.groundedStand ? ", Stand Number" : "" }${ atis.groundedType ? ", Aircraft Type" : "" } on Initial Contact.`}}
 {{ `Airborne Acft Advise Receipt of Information ${ atis.information }${ atis.airborneType ? ", Aircraft Type" : "" }${ atis.airborneAlt ? ", Altitude" : "" }${ atis.airborneSpeed ? ", Airspeed" : "" }${ atis.airborneHeading ? ", Heading" : "" } on Initial Contact.`}}
 {{ atis.speedLimit ? `Speed ${ atis.speed }kts or below.&NewLine;` : ""}}VFR Acft say Direction of Flight, Intentions in Flight Plan.
 {{ atis.sids ? `SIDs/STARs are preferred.&NewLine;` : ""}}{{ atis.emergencies ? "Emergencies Allowed." : "No Emergencies." }}
 {{ atis.extraNotams }}                
-Charts:
+{{ atis.markdown ? "**":"" }}Charts:{{ atis.markdown ? "**":"" }}
 Chart Pack Author: {{ atis.chartAuthor }}
 Chart Pack Link: {{ atis.chartLink }}
-{{ "".padStart(atis.dashes, "―") }}
+{{ atis.markdown ? "**":"" }}{{ "".padStart(atis.dashes, "―") }}{{ atis.markdown ? "**":"" }}
 {{ atis.boxes ? "∎" : "" }} End of ATIS Information {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }} {{ atis.boxes ? "∎" : "" }}</textarea>
         </div>
     </div>
@@ -278,7 +281,8 @@ let atis = reactive({
     extraNotams: "",
     sids: true,
     customCharts: false,
-    useQNH: true
+    useQNH: true,
+    markdown: false
 })
 </script>
 
