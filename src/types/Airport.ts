@@ -596,8 +596,8 @@ function generateAirports(): Airport[] {
                     link: "https://github.com/Treelon/ptfs-charts/tree/main/Orenji/Tokyo"
                 },
                 {
-                    author: "Nikita39Gamer",
-                    link: "https://docs.google.com/document/d/1VZPegMnzg2cmiysxUPK3TeWvPqzk4RysnvHYmJJ47pM/edit"
+                    author: "Nikita39Gamer, userwastaken",
+                    link: "https://drive.google.com/file/d/12D4LEcKJiMkh9u7i1kEih54dYSAFQHRG/view"
                 },
                 {
                     author: "GA4RIE1",
