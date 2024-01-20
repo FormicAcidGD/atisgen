@@ -1,5 +1,7 @@
 import { getKeyByValue } from "./Util"
 
+let version = "1.0.2"
+
 let aircraftTypes = ["A-10 Warthog", "A6M Zero", "Airbus A220", "Airbus A320", "Airbus A330", "Airbus A340", "Airbus A350", "Airbus A380", "Airbus Beluga", "Avro Vulcan", "B2 Bomber", "B29", "Hot Air Balloon", "Bell 412", "Blimp", "Boeing 737", "Boeing 747", "Boeing 747 Cargo", "Boeing 757", "Boeing 757 Cargo", "Boeing 767", "Boeing 767 Cargo", "Boeing 777", "Boeing 777 Cargo", "Boeing 787", "Bombardier CRJ700", "Bombardier Learjet", "Bombardier Q400", "C130 Hercules", "Caravan Blimp", "Cessna 172", "Cessna 172 Seaplane", "Cessna 182", "Cessna 182 Seaplane", "Cessna Caravan", "Cessna Caravan Seaplane", "Cessna Caravan Skydiving", "Chinook", "Cirrus Vision SF50", "Concorde", "DHC-6 Twin Otter", "DHC-6 Twin Otter Seaplane", "Douglas MD11", "Douglas MD11 Cargo", "Douglas MD90", "Boeing DreamLifter", "English Electric Lightning", "Eurofighter Typhoon", "Extra 300s", "F/A-18 Super-Hornet", "F-14 Tomcat", "F-15E Strike Eagle", "F-16", "F-22", "F-35B", "F4 Phantom", "F4U Corsair", "Fokker Dr1", "Airbus H135", "Hawker Harrier (VTOl)", "Hawk T1", "Hurricane", "Mig-15", "Walrus", "P38 Lightning", "P51 Mustang", "Parastrike", "Piper Cub", "Piper Cub Seaplane", "Piper PA-28"]
 
 let flightRules = ["IFR", "VFR"]
@@ -113,5 +115,5 @@ let extraAtisMapping = {
 
 
 
-export { aircraftTypes, airportMap, airports, extraAtisMapping, flightRules, getPhonetic, getPhoneticLetter, navBarItems, phoneticAlphabet, phonetics, reverseAirportMap, reverseAirports }
+export { aircraftTypes, airportMap, airports, extraAtisMapping, flightRules, getPhonetic, getPhoneticLetter, navBarItems, phoneticAlphabet, phonetics, reverseAirportMap, reverseAirports, version }
 

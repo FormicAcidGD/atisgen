@@ -191,12 +191,18 @@ Chart Pack Link: {{ atis.chartLink }}
 {{ atis.boxes ? "∎" : "" }} End of ATIS Information {{ !atis.phoneticAbbr ? atis.information : getPhonetic(atis.information) }} {{ atis.boxes ? "∎" : "" }}</textarea>
         </div>
     </div>
+    <div class="banner">
+        <a href="https://discord.gg/8tSu4ewdsM" target="_blank">Discord</a>
+        <p>
+            v{{ version }}
+        </p>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, type Ref } from 'vue';
 import SearchField from './components/SearchField.vue';
-import { airports, getPhonetic, phonetics } from './StaticData';
+import { airports, getPhonetic, phonetics, version } from './StaticData';
 import { getAirport, type ChartPack } from './types/Airport';
 
 let atisRef: Ref<HTMLDivElement | null> = ref(null)
@@ -365,20 +371,33 @@ textarea {
     width: 46.5vw;
     min-width: 46.5vw;
     max-width: 46.5vw;
-    height: 11.5vh;
-    min-height: 11.5vh;
-    max-height: 11.5vh;
+    height: 8.5vh;
+    min-height: 8.5vh;
+    max-height: 8.5vh;
     margin-top: 1vh;
 }
 textarea.atis {
     width: 46.5vw;
     min-width: 46.5vw;
     max-width: 46.5vw;
-    height: 88.5vh;
-    min-height: 88.5vh;
-    max-height: 88.5vh;
+    height: 85.5vh;
+    min-height: 85.5vh;
+    max-height: 85.5vh;
     font-size: 1.8vh;
     font-family: "gg sans";
 }
-
+.banner {
+    width: 98vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+}
+a {
+    color: #0c5f71;
+    text-decoration: none;
+}
 </style>
