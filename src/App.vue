@@ -38,7 +38,7 @@
                 </div>
                 <div class="hflex boxed half" @click="atis.markdown = !atis.markdown">
                     <input type="checkbox" :checked="atis.markdown">
-                    <p>Markdown</p>
+                    <p>Bold Text</p>
                 </div>  
             </div>
             <div class="hflex">
