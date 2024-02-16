@@ -200,10 +200,10 @@ Chart Pack Link: {{ atis.chartLink }}
 </template>
 
 <script setup lang="ts">
+import { findAirport as getAirport, type ChartPack } from 'ptfst-db';
 import { reactive, ref, type Ref } from 'vue';
 import SearchField from './components/SearchField.vue';
 import { airports, getPhonetic, phonetics, version } from './StaticData';
-import { getAirport, type ChartPack } from './types/Airport';
 
 let atisRef: Ref<HTMLDivElement | null> = ref(null)
 

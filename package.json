@@ -9,11 +9,12 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "homepage": "https://formicacidgd.github.io/atisgen/",
   "dependencies": {
+    "ptfst-db": "^1.1.0",
     "vue": "^3.3.11"
   },
   "devDependencies": {
